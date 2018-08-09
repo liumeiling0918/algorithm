@@ -1,0 +1,15 @@
+ //二维数组中的查找
+    public static boolean find(int[][] a,int value){
+        int m=a.length;//行数
+        int n=a[0].length;//列数
+        int i=0;//行下标
+        int j=n-1;//列下标
+        while(i<m&&j>0){
+            if (a[i][j]==value) return true;
+            else if (a[i][j]<value) i++;//向下走
+            else j--;//向左走
+
+        }
+        return false;
+
+    }
