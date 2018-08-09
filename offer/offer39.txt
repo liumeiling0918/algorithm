@@ -1,0 +1,22 @@
+
+//寻找数组中重复的数字
+//采用各就各位的方法
+    public static  void findRepeat(int[] a){
+        if(a.length==0) return;
+        for (int i=0;i<a.length;){
+            if (a[i]==i)  i++;
+            if (a[i]!=i){
+                int m=a[i];
+                //将a[i]放在位置m处
+                if (a[m]==m){//重复数字
+                    System.out.println(m);
+                    i++;
+                }
+                else {
+                    int temp=a[m];
+                    a[m]=a[i];
+                    a[i]=temp;
+                }
+            }
+        }
+    }
