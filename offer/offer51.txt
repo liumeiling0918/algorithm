@@ -1,0 +1,24 @@
+ //字符串中的空格替换
+    public static String replace(String str){
+        char[] ch=str.toCharArray();
+        //统计空格的数量
+        int count=0;
+        for (int i=0;i<ch.length;i++){
+            if (ch[i]==' ') count++;
+        }
+        char[] copy=new char[ch.length+count*2];
+        //从最后一位开始插入
+        int index=copy.length-1;
+        for (int j=ch.length-1;j>=0;j--){
+            if (ch[j]!=' '){
+                copy[index--]=ch[j];
+            }
+            else {//空格时进行替换
+                copy[index--]='0';
+                copy[index--]='2';
+                copy[index--]='%';
+            }
+        }
+        String newStr=String.valueOf(copy);
+        return newStr;
+    }
