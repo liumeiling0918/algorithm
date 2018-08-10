@@ -1,5 +1,5 @@
 
-//寻找数组中重复的数字
+//寻找数组中重复的数字（修改数组）
 //采用各就各位的方法
     public static  void findRepeat(int[] a){
         if(a.length==0) return;
