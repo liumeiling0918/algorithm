@@ -1,0 +1,16 @@
+//寻找旋转数组中的最小数字
+    public static int Find(int a[]){
+
+        //采取二分法查找最小的数字,可以将旋转数组看成两个有序子数组
+        int start=0;//始终指向第一个子数组
+        int end=a.length-1;//始终指向第二个子数组
+        //移动指针start,end,使得start指向第一个数组的最后一个元素，end指向第二个数组的第一个元素
+        while (start!=end-1){
+           int mid=(start+end)/2;
+            if (a[mid] >a[start]) start=mid;
+            else  end=mid;
+        }
+       return a[end];
+    }
+//但是对于该方法，不能用于旋转数组中有重复的数字，
+// 因为当a[mid]=a[start]时，不确定start=mid或者end=mid 例如 3，4，4 ，1，2，4 
