@@ -1,0 +1,26 @@
+数组中出现次数超过一半的数字
+
+public class Solution {
+    public int MoreThanHalfNum_Solution(int [] array) {
+          if (array.length<=0) return 0;
+        int value=array[0];
+        int count=1;
+        for (int i=1;i<=array.length-1;i++){
+            if (value==array[i]) count++;
+           else {
+               count--;
+            }
+            if (count<0){
+                value=array[i];
+                count=1;
+            }
+        }
+        //验证该value
+        int c=0;
+        for (int i=0;i<=array.length-1;i++){
+            if (array[i]==value) c++;
+        }
+        if (c> array.length/2)  return value;
+        else return 0;
+    }
+}
