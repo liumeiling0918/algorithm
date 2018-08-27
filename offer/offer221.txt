@@ -1,0 +1,39 @@
+//整数1出现的次数
+public class Solution {
+public  int NumberOf1Between1AndN_Solution(int n) {
+            if (n<=0) return 0;
+            if (n<=9) return 1;
+            if (n==10) return 2;
+            //n大于10时 去掉最高位进行递归
+        String str=String.valueOf(n);
+        String pos_str=str.substring(1,str.length());
+        int pos=Integer.valueOf(pos_str);
+        //计算pos+1~n含有的1的个数 346-1345
+          int count=cal(n);
+         return count+NumberOf1Between1AndN_Solution(pos);
+
+        }
+        public  int cal(int end){
+            int sum=0;
+            String endStr=String.valueOf(end);
+            //最高位的数字
+            int high=Integer.parseInt(endStr.substring(0,1));
+            //最高位为1的数目
+            int highSum=0;
+            //计算去除最高位后的数字长度
+            int len=endStr.length()-1;
+            if (high==1){ // 1出现在最高位的次数：除去最高位的数字+1
+                highSum=Integer.parseInt(endStr.substring(1,endStr.length()))+1;
+            }else{
+                highSum=(int)Math.pow(10,len);
+            }
+
+
+            //其他为含有数字1的个数
+            int count1=(int)Math.pow(10,len-1);
+            int otherSum=(int)high*count1*len;
+            sum=highSum+otherSum;
+            return sum;
+
+        }
+}
