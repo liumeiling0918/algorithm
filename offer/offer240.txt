@@ -1,0 +1,27 @@
+//求第n个丑数
+public class Solution {
+    public int GetUglyNumber_Solution(int index) {
+      if(index<=0) return 0;
+        if (index==1) return 1;
+        int a[]=new int[index];
+        a[0]=1;
+        int i=1;
+        int m=0,n=0,t=0;//m,n,t分别记录*2，*3，*5的下标
+        while (i<=index-1){//求a[i]的值
+            for (;m<=i-1;m++){
+                if (a[m]*2>a[i-1]) break;
+            }
+            a[i]=a[m]*2;
+            for (;n<=i-1;n++){
+                if (a[n]*3>a[i-1]) break;
+            }
+            a[i]=Math.min(a[n]*3,a[i]);
+            for (;t<=i-1;t++){
+                if (a[t]*5>a[i-1]) break;
+            }
+            a[i]=Math.min(a[t]*5,a[i]);
+            i++;
+        }
+        return a[index-1];
+    }
+}
