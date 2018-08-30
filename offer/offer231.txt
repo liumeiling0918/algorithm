@@ -1,0 +1,23 @@
+//数字翻译成字符串的方案
+public static int GetTranNum(int num){
+        if(num<0) return 0;
+        if (num<9) return 1;
+        String str=String.valueOf(num);
+        int len=str.length();
+        int dp[]=new int[len];
+        dp[len-1]=1;
+        if (Integer.parseInt(str.substring(len-2,len))>25) {
+            dp[len-2]=1;
+        }else {
+            dp[len-2]=2;
+        }
+        if (len==2) return dp[0];
+        for (int i=len-3;i>=0;i--){
+            if (Integer.parseInt(str.substring(i,i+2))>25){
+                dp[i]=dp[i+1];
+            }else {
+                dp[i]=dp[i+1]+dp[i+2];
+            }
+        }
+        return dp[0];
+    }
