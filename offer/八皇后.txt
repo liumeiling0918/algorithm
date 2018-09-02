@@ -1,0 +1,64 @@
+public class Solution1 {
+    public static int count=0;////方案数
+    public static void main(String[] args) {
+
+        int num[]={0,1,2,3,4,5,6,7};
+        System.out.println(Queen());
+        System.out.println(isBoard(num));
+
+
+    }
+  public static int Queen(){
+        int pos[]=new int[8];
+        //pos[i]表示第i行棋子存放的列号
+        for (int i=0;i<pos.length;i++){
+            pos[i]=i;
+        }
+        int index=0;
+        helpQueue(pos,index);
+        return count;
+  }
+  public static void helpQueue(int[] pos,int index){
+      if (index==pos.length){
+
+          if (isBoard(pos)) {
+
+              count++;
+              for (int i=0;i<=pos.length-1;i++){
+                  System.out.print(pos[i]+" ");
+              }
+              System.out.println();
+              }
+              return;
+      }
+      for (int i=index;i<pos.length;i++){
+          if (i!=index){
+              int temp=pos[i];
+              pos[i]=pos[index];
+              pos[index]=temp;
+          }
+          index=index+1;
+          helpQueue(pos,index);
+          index=index-1;
+          if (i!=index){
+              int temp=pos[i];
+              pos[i]=pos[index];
+              pos[index]=temp;
+          }
+
+      }
+
+  }
+  public static  boolean isBoard(int[] pos){
+      //每个棋子放置在第i行第pos[i]列
+      for (int i=0;i<=pos.length-1;i++){
+          for (int j=i+1;j<=pos.length-1;j++){
+              if ((pos[i]-pos[j])==(i-j)||(pos[i]-pos[j])==(j-i)) return false;
+          }
+
+      }
+      return true;
+
+  }
+
+}
