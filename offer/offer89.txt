@@ -1,0 +1,46 @@
+ public static void main(String[] args) {
+
+        char[][] ma={{'a','b','t','g'},{'c','f','c','s'},{'j','d','e','h'}};
+        char[] str={'b','f','c','e'};
+        System.out.println(hasPath(ma,3,4,str));
+
+
+    }
+    public static   boolean hasPath(char[][] matrix, int rows, int cols, char[] str)
+    {
+        int visited[][]=new int[rows][cols];
+        for (int i=0;i<rows;i++){
+            for (int j=0;j<cols;j++){
+                visited[i][j]=0;
+            }
+        }
+        for (int i=0;i<rows;i++){
+            for (int j=0;j<cols;j++){
+                if (helpPath(matrix,rows,cols,str,visited,0,i,j)){
+                    return true;
+                }
+            }
+        }
+    return false;
+
+
+    }
+    public  static boolean helpPath(char[][] matrix, int rows, int cols, char[] str,int visited[][],int index,int row,int col){
+
+        if (index>=str.length) return true;
+        if (row>=0&&row<rows&&col>=0&&col<cols&&str[index]==matrix[row][col]&& visited[row][col]==0){
+             visited[row][col]=1;
+             if (helpPath(matrix,rows,cols,str,visited,index+1,row-1,col)) return true;
+            if (helpPath(matrix,rows,cols,str,visited,index+1,row+1,col)) return true;
+            if (helpPath(matrix,rows,cols,str,visited,index+1,row,col-1)) return true;
+            if (helpPath(matrix,rows,cols,str,visited,index+1,row,col+1)) return true;
+            else {
+                visited[row][col]=0;
+                return false;
+            }
+        }
+
+
+     return false;
+
+    }
