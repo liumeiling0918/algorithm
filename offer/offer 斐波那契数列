@@ -1,0 +1,17 @@
+1.使用递归：
+def fib(n):
+	if n==1 or n==0 :
+		return n
+	return fib(n-2)+fib(n-1)
+  
+  
+2.不适用递归：
+def Fibonacci(n):
+	a = 0
+	b = 1
+	i = 1
+	if n == 0: return 0;
+	while i < n:
+		a,b =b,a+b
+		i+=1
+	return b
